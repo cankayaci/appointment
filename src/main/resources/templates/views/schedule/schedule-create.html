@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{/index}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+<div data-layout-fragment="content">
+    <h1 class="h3 mb-4 text-gray-800">
+        <span th:text="#{lang.schedule.create}"></span>
+    </h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <div th:if="${result} == 'success'" class="card mb-4 py-3 border-bottom-success">
+                <div class="card-body">
+                    <span th:text="#{lang.operation.successful}"></span>
+                </div>
+            </div>
+            <div th:if="${result} == 'error'" class="card mb-4 py-3 border-bottom-danger">
+                <div class="card-body">
+                    <span th:text="#{lang.operation.unsuccessful}"></span>
+                </div>
+            </div>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <span th:text="#{lang.informations}"></span>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <form th:object="${addScheduleModel}" method="post">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">
+                                <span th:text="#{lang.name}"></span>
+                            </label>
+                            <div class="col-sm-6">
+                                <input type="text" id="nameField" class="form-control"
+                                       th:value="|Dr. ${addScheduleModel?.doctor?.name} ${addScheduleModel?.doctor?.surname}|"
+                                       disabled></input>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="localDateTimeField" class="col-sm-2 col-form-label">
+                                <span th:text="#{lang.schedule.date}"></span>
+                            </label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" th:field="*{{date}}"
+                                       id="localDateTimeField">
+                                <div th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="appointmentMinutesField" class="col-sm-2 col-form-label">
+                                <span th:text="#{lang.schedule.appointment.minutes}"></span>
+                            </label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" th:field="*{appointmentMinutes}"
+                                       id="appointmentMinutesField">
+                                <div th:if="${#fields.hasErrors('appointmentMinutes')}"
+                                     th:errors="*{appointmentMinutes}"></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <span th:text="#{lang.save}"></span>
+                        </button>
+                        <input type="hidden" th:field="*{doctor}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../js/jquery.min.js"></script>
+    <!-- First load pikaday.js and then the jQuery plugin -->
+    <script src="../../js/moment.min.js"></script>
+    <script src="../../js/pikaday.js"></script>
+    <script src="../../js/pikaday.jquery.js"></script>
+
+    <script type="text/javascript" th:inline="javascript">
+
+    var picker = new Pikaday(
+    {
+        field: document.getElementById('localDateTimeField'),
+        firstDay: 1,
+        format: 'MM/DD/YYYY',
+        minDate: new Date(2000, 0, 1),
+        maxDate: new Date(2020, 12, 31),
+        yearRange: [2000,2020]
+    });
+    </script>
+</div>
+
+</body>
+</html>

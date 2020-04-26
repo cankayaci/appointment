@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{/index}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+<div data-layout-fragment="content">
+    <h1 class="h3 mb-4 text-gray-800">
+        <span th:text="#{lang.system.users.find}"></span>
+    </h1>
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div th:if="${result} == 'success'" class="card mb-4 py-3 border-bottom-success">
+                <div class="card-body">
+                    <span th:text="#{lang.operation.successful}"></span>
+                </div>
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <span th:text="#{lang.informations}"></span>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <form class="form-inline" th:action="@{/user/search}">
+                        <div class="form-group mb-2">
+                            <label class="mb-2 mr-sm-2" for="textUserName">
+                                <span th:text="#{lang.system.user.username}"></span>
+                            </label>
+                            <input type="text" th:value="${username}" class="form-control mb-2 mr-sm-2" id="textUserName" th:name="username">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="mb-2 mr-sm-2" for="textEmail">
+                                E-Mail
+                            </label>
+                            <input type="text" th:value="${email}" class="form-control mb-2 mr-sm-2" id="textEmail" th:name="email">
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <button type="submit" class="btn btn-primary mb-2">
+                                <span th:text="#{lang.search}"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Brand Buttons -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <span th:text="#{lang.results}"></span>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div id="dataTable_wrapper">
+                            <div class="row row-margin">
+                                <div class="col-sm-12">
+
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                        <tr role="row">
+
+                                            <th tabindex="0" rowspan="1" colspan="1"><span
+                                                    th:text="#{lang.system.user.username}"></span></th>
+                                            <th tabindex="0" rowspan="1" colspan="1"><span
+                                                    th:text="#{lang.system.user.name}"></span></th>
+                                            <th tabindex="0" rowspan="1" colspan="1"><span
+                                                    th:text="#{lang.system.user.surname}"></span></th>
+                                            <th tabindex="0" rowspan="1" colspan="1">
+                                                E-Mail
+                                            </th>
+                                            <th tabindex="0" rowspan="1" colspan="1"><span
+                                                    th:text="#{lang.update}"></span></th>
+
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <tr role="row" th:each="user : ${pageUser.content}">
+                                            <td th:text="${user.username}"/>
+                                            <td th:text="${user.name}"/>
+                                            <td th:text="${user.surname}"/>
+                                            <td th:text="${user.email}"/>
+                                            <td>
+                                                <a th:href='@{/user/edit/{userId}(userId = ${user.id})}' class="btn btn-success btn-circle btn-sm">
+                                                    <i class="fas fa-check"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <div class="row row-margin">
+                                <div class="col-sm-12 col-md-5">
+                                </div>
+                                <div class="col-sm-12 col-md-7">
+                                    <div data-th-replace="fragments/fragment-paginator-nav :: paginator-nav"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<nav xmlns:th="http://www.w3.org/1999/xhtml" data-th-fragment="paginator-nav">
+    <div id="paginate">
+        <ul class='pagination pull-right'>
+            <li class="page-item" th:classappend="${page.firstPage}?'disabled':''">
+                <a class="page-link" th:href='@{${page.url}(page=0,size=${page.size})}'>←
+                    <span th:text="#{lang.back}"></span>
+                </a>
+            </li>
+            <li class="page-item" th:classappend="${page.hasPreviousPage}? '' : 'disabled'">
+                <a class="page-link" th:href='@{${page.url}(page=${page.number-2},size=${page.size})}'
+                   title='Go to previous page'>«</a>
+            </li>
+            <li class="page-item" th:each='item : ${page.items}' th:classappend="${item.current}? 'active' : ''">
+                <a class="page-link" th:href='@{${page.url}(page=${item.number-1},size=${page.size})}'>
+                    <span th:text='${item.number}'></span>
+                </a>
+            </li>
+            <li class="page-item" th:classappend="${page.hasNextPage}? '' : 'disabled'">
+                <a class="page-link" th:href='@{${page.url}(page=${page.number},size=${page.size})}'
+                   title='Go to next page'>»</a>
+            </li>
+            <li class="page-item" th:classappend="${page.lastPage}? 'disabled' : ''">
+                <a class="page-link" th:href='@{${page.url}(page=${page.totalPages - 1},size=${page.size})}'>
+                    <span th:text="#{lang.forward}"></span>→</a>
+            </li>
+        </ul>
+    </div>
+</nav>

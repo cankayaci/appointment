@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{/index}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+<div data-layout-fragment="content">
+    <h1 class="h3 mb-4 text-gray-800">
+        <span th:text="#{lang.schedule.find}"></span>
+    </h1>
+    <div class="row">
+
+        <div class="col-lg-12">
+
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <span th:text="#{lang.informations}"></span>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <form class="form-inline">
+
+                        <div class="form-group mb-2">
+                            <label class="mb-2 mr-sm-2" for="dateTimeField">
+                                <span th:text="#{lang.date}"></span>
+                            </label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" th:value="${date}" id="dateTimeField"
+                                   th:name="date">
+                        </div>
+                        <div class="form-group mb-2">
+                            <button type="submit" class="btn btn-primary mb-2">
+                                <span th:text="#{lang.search}"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Brand Buttons -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <span th:text="#{lang.results}"></span>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div id="dataTable_wrapper">
+                            <div class="row row-margin">
+                                <div class="col-sm-12">
+
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                        <tr role="row">
+
+                                            <th tabindex="0" rowspan="1" colspan="1"><span
+                                                    th:text="#{lang.appointment.start.time}"></span></th>
+                                            <th tabindex="0" rowspan="1" colspan="1"><span
+                                                    th:text="#{lang.appointment.end.time}"></span></th>
+                                            <th tabindex="0" rowspan="1" colspan="1"><span
+                                                    th:text="#{lang.appointment.choose.patient}"></span></th>
+
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <tr role="row" th:each="schedule : ${schedulePage.content}">
+                                            <td th:text="${schedule.startTime}"/>
+                                            <td th:text="${schedule.endTime}"/>
+                                            <td>
+                                                <a th:href="@{'/appointment/schedule/'+${schedule.id}+'/patient'}"
+                                                   class="btn btn-info btn-circle btn-sm">
+                                                    <i class="fas fa-info-circle"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row row-margin">
+                                <div class="col-sm-12 col-md-5">
+                                </div>
+                                <div class="col-sm-12 col-md-7">
+                                    <div data-th-replace="fragments/fragment-paginator-nav :: paginator-nav"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script th:src="@{~/js/jquery.min.js}"></script>
+    <script th:src="@{~/js/moment.min.js}"></script>
+    <script th:src="@{~/js/pikaday.js}"></script>
+    <script th:src="@{~/js/pikaday.jquery.js}"></script>
+
+    <script type="text/javascript" th:inline="javascript">
+
+    var picker = new Pikaday(
+    {
+        field: document.getElementById('dateTimeField'),
+        firstDay: 1,
+        format: 'MM/DD/YYYY',
+        minDate: new Date(2000, 0, 1),
+        maxDate: new Date(2020, 12, 31),
+        yearRange: [2000,2020]
+    });
+
+    </script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
+    data-th-fragment="sidebar-menu" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" data-th-href="@{/}">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fa fa-ambulance"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">My Hospital</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        <span th:text="#{lang.patient}"></span>
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+           aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-user"></i>
+            <span th:text="#{lang.patient}"></span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header"><span th:text="#{lang.patient}"></span>:</h6>
+                <a class="collapse-item" data-th-href="@{/patient/search}">
+                    <span th:text="#{lang.patient.find}"></span>
+                </a>
+                <a class="collapse-item" href="cards.html" data-th-href="@{/patient}">
+                    <span th:text="#{lang.patient.create}"></span>
+                </a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        <span th:text="#{lang.appointment}"></span>
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+           aria-controls="collapsePages">
+            <i class="fas fa-fw fa-stethoscope"></i>
+            <span th:text="#{lang.appointment}"></span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header"><span th:text="#{lang.appointment}"></span></h6>
+                <a class="collapse-item" data-th-href="@{/appointment/patients}">
+                    <span th:text="#{lang.appointment.search}"></span>
+                </a>
+                <a class="collapse-item" data-th-href="@{/appointment}">
+                    <span th:text="#{lang.appointment.create}"></span>
+                </a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <div class="sidebar-heading">
+        <span th:text="#{lang.system.definitions}"></span>
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUserDefinition"
+           aria-expanded="true"
+           aria-controls="collapsePages">
+            <i class="fas fa-fw fa-laptop"></i>
+            <span th:text="#{lang.system.users}"></span>
+        </a>
+        <div id="collapseUserDefinition" class="collapse" aria-labelledby="headingPages"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header"><span th:text="#{lang.system.users}"></span></h6>
+                <a class="collapse-item" data-th-href="@{/user/search}"><span
+                        th:text="#{lang.system.users.find}"></span></a>
+                <a class="collapse-item" data-th-href="@{/user}"><span th:text="#{lang.system.users.create}"></span></a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDoctorDefinition"
+           aria-expanded="true"
+           aria-controls="collapsePages">
+            <i class="fas fa-fw fa-user-md"></i>
+            <span th:text="#{lang.system.doctor.definitions}"></span>
+        </a>
+        <div id="collapseDoctorDefinition" class="collapse" aria-labelledby="headingPages"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header"><span th:text="#{lang.system.doctor.definitions }"></span></h6>
+                <a class="collapse-item" data-th-href="@{/doctor/search}"><span
+                        th:text="#{lang.system.doctor.definitions.find}"></span></a>
+                <a class="collapse-item" data-th-href="@{/doctor}"><span
+                        th:text="#{lang.system.doctor.definitions.create}"></span></a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>

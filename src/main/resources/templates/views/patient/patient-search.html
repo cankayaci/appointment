@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{/index}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+<div data-layout-fragment="content">
+    <h1 class="h3 mb-4 text-gray-800">
+        <span th:text="#{lang.patient.find}"></span>
+    </h1>
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div th:if="${result} == 'success'" class="card mb-4 py-3 border-bottom-success">
+                <div class="card-body">
+                    <span th:text="#{lang.operation.successful}"></span>
+                </div>
+            </div>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <span th:text="#{lang.informations}"></span>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <form class="form-inline" th:action="@{/patient/search}">
+                        <div class="form-group mb-2">
+                            <label class="mb-2 mr-sm-2" for="textIdNumber">
+                                <span th:text="#{lang.identityNumber}"></span>
+                            </label>
+                            <input type="text" th:value="${identityNumber}" class="form-control mb-2 mr-sm-2" id="textIdNumber"
+                                   th:name="identityNumber">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="mb-2 mr-sm-2" for="textName">
+                                <span th:text="#{lang.name}"></span>
+                            </label>
+                            <input type="text" th:value="${name}" class="form-control mb-2 mr-sm-2" id="textName" th:name="name">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label class="mb-2 mr-sm-2" for="textSurname">
+                                <span th:text="#{lang.surname}"></span>
+                            </label>
+                            <input type="text" th:value="${surname}" class="form-control mb-2 mr-sm-2" id="textSurname" th:name="surname">
+                        </div>
+                        <div class="form-group mb-2">
+                            <button type="submit" class="btn btn-primary mb-2">
+                                <span th:text="#{lang.search}"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Brand Buttons -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <span th:text="#{lang.results}"></span>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div id="dataTable_wrapper">
+                            <div class="row row-margin">
+                                <div class="col-sm-12">
+
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                        <tr role="row">
+
+                                            <th tabindex="0" rowspan="1" colspan="1"><span
+                                                    th:text="#{lang.identityNumber}"></span></th>
+                                            <th tabindex="0" rowspan="1" colspan="1"><span
+                                                    th:text="#{lang.name}"></span></th>
+                                            <th tabindex="0" rowspan="1" colspan="1"><span
+                                                    th:text="#{lang.surname}"></span></th>
+                                            <th tabindex="0" rowspan="1" colspan="1"><span
+                                                    th:text="#{lang.gender}"></span></th>
+                                            <th tabindex="0" rowspan="1" colspan="1"><span
+                                                    th:text="#{lang.address}"></span></th>
+                                            <th tabindex="0" rowspan="1" colspan="1"><span
+                                                    th:text="#{lang.telephone}"></span></th>
+                                            <th tabindex="0" rowspan="1" colspan="1"><span
+                                                    th:text="#{lang.update}"></span></th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <tr role="row" th:each="patient : ${patientPage.content}">
+                                            <td th:text="${patient.identityNumber}"/>
+                                            <td th:text="${patient.name}"/>
+                                            <td th:text="${patient.surname}"/>
+                                            <td>
+                                                <div th:if="${patient.gender == 'M'}">
+                                                    <span th:text="#{lang.gender.male}"></span>
+                                                </div>
+                                                <div th:unless="${patient.gender == 'M'}">
+                                                    <span th:text="#{lang.gender.female}"></span>
+                                                </div>
+                                            </td>
+                                            <td th:text="${patient.address}"/>
+                                            <td th:text="${patient.telephone}"/>
+                                            <td>
+                                                <a th:href='@{/patient/edit/{patientId}(patientId = ${patient.id})}' class="btn btn-success btn-circle btn-sm">
+                                                    <i class="fas fa-check"></i>
+                                                </a>
+                                             </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row row-margin">
+                                <div class="col-sm-12 col-md-5">
+                                </div>
+                                <div class="col-sm-12 col-md-7">
+                                    <div data-th-replace="fragments/fragment-paginator-nav :: paginator-nav"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

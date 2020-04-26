@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{/index}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+
+<body>
+<div data-layout-fragment="content">
+    <h1 class="h3 mb-4 text-gray-800">
+        <span th:text="#{lang.system.doctor.definitions.update}"></span>
+    </h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <div th:if="${result} == 'success'" class="card mb-4 py-3 border-bottom-success">
+                <div class="card-body">
+                    <span th:text="#{lang.operation.successful}"></span>
+                </div>
+            </div>
+            <div th:if="${result} == 'error'" class="card mb-4 py-3 border-bottom-danger">
+                <div class="card-body">
+                    <span th:text="#{lang.operation.unsuccessful}"></span>
+                </div>
+            </div>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <span th:text="#{lang.informations}"></span>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <form th:object="${editDoctorModel}" method="post">
+                        <div class="form-group row">
+                            <label for="namefield" class="col-sm-2 col-form-label">
+                                <span th:text="#{lang.doctor.name}"></span>
+                            </label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" th:field="*{name}" id="namefield">
+                                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="surnamefield" class="col-sm-2 col-form-label">
+                                <span th:text="#{lang.doctor.surname}"></span>
+                            </label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" th:field="*{surname}" id="surnamefield">
+                                <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="identityNumberfield" class="col-sm-2 col-form-label">
+                                <span th:text="#{lang.doctor.identityNumber}"></span>
+                            </label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" th:field="*{identityNumber}"
+                                       id="identityNumberfield">
+                                <div th:if="${#fields.hasErrors('identityNumber')}" th:errors="*{identityNumber}"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="genderSelect">
+                                <span th:text="#{lang.doctor.gender}"></span>
+                            </label>
+                            <div class="col-sm-6">
+                                <select class="form-control" th:field="*{gender}" id="genderSelect">
+                                    <option value="M" th:text="#{lang.gender.male}"></option>
+                                    <option value="F" th:text="#{lang.gender.female}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="addressField" class="col-sm-2 col-form-label">
+                                <span th:text="#{lang.doctor.address}"></span>
+                            </label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" th:field="*{address}" id="addressField">
+                                <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="telephoneField" class="col-sm-2 col-form-label">
+                                <span th:text="#{lang.doctor.telephone}"></span>
+                            </label>
+                            <div class="col-sm-6">
+                                <input type="tel" class="form-control" th:field="*{telephone}" id="telephoneField">
+                                <div th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="deparmentSelect">
+                                <span th:text="#{lang.doctor.department}"></span>
+                            </label>
+                            <div class="col-sm-6">
+                                <select class="form-control" th:field="*{department}" id="deparmentSelect">
+                                    <option value="d1"  th:text="#{lang.department.d1}"></option>
+                                    <option value="d2"  th:text="#{lang.department.d2}"></option>
+                                    <option value="d3"  th:text="#{lang.department.d3}"></option>
+                                    <option value="d4"  th:text="#{lang.department.d4}"></option>
+                                    <option value="d5"  th:text="#{lang.department.d5}"></option>
+                                    <option value="d6"  th:text="#{lang.department.d6}"></option>
+                                    <option value="d7"  th:text="#{lang.department.d7}"></option>
+                                    <option value="d8"  th:text="#{lang.department.d8}"></option>
+                                    <option value="d9"  th:text="#{lang.department.d9}"></option>
+                                    <option value="d10" th:text="#{lang.department.d10}"></option>
+                                    <option value="d11" th:text="#{lang.department.d11}"></option>
+                                    <option value="d12" th:text="#{lang.department.d12}"></option>
+                                    <option value="d13" th:text="#{lang.department.d13}"></option>
+                                    <option value="d14" th:text="#{lang.department.d14}"></option>
+                                    <option value="d15" th:text="#{lang.department.d15}"></option>
+                                    <option value="d16" th:text="#{lang.department.d16}"></option>
+                                    <option value="d17" th:text="#{lang.department.d17}"></option>
+                                    <option value="d18" th:text="#{lang.department.d18}"></option>
+                                    <option value="d19" th:text="#{lang.department.d19}"></option>
+                                    <option value="d20" th:text="#{lang.department.d20}"></option>
+                                    <option value="d21" th:text="#{lang.department.d21}"></option>
+                                    <option value="d22" th:text="#{lang.department.d22}"></option>
+                                    <option value="d23" th:text="#{lang.department.d23}"></option>
+                                    <option value="d24" th:text="#{lang.department.d24}"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <span th:text="#{lang.save}"></span>
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
