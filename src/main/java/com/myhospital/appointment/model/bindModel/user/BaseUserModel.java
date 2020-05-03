@@ -16,7 +16,7 @@ public class BaseUserModel {
     @NotBlank(message = "{lang.system.user.surname.mandatory}")
     private String surname;
 
-    @Email(message = "")
+    @Email(message = "{lang.system.user.email.not.valid}")
     private String email;
 
     private String roleName;

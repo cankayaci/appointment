@@ -28,22 +28,23 @@ public class PatientController {
     private PatientService patientService;
 
     @GetMapping(value = "/patient")
-    public String patient(Model model) {
+    public String patient(Model model, @ModelAttribute("result") Optional<String> result) {
         model.addAttribute("patientAddModel", new PatientAddModel());
+        model.addAttribute("result",result.orElse(""));
         return "views/patient/patient-create";
     }
 
     @PostMapping(value = "/patient")
     public String patientSubmit(@Valid @ModelAttribute("patientAddModel")
-                                        PatientAddModel patientAddModel, BindingResult bindingResult, Model model) {
+                                        PatientAddModel patientAddModel, BindingResult bindingResult, Model model,RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("result", "error");
             return "views/patient/patient-create";
         }
         patientService.save(patientAddModel);
-        model.addAttribute("result", "success");
-        return "views/patient/patient-create";
+        redirectAttributes.addFlashAttribute("result", "success");
+        return "redirect:/patient";
     }
 
     @GetMapping(value = "/patient/search")

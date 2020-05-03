@@ -30,23 +30,24 @@ public class DoctorController {
     private DoctorService doctorService;
 
     @GetMapping(value="/doctor")
-    public String doctor(Model model){
+    public String doctor(Model model, @ModelAttribute("result") Optional<String> result){
         model.addAttribute("addDoctorModel",new AddDoctorModel());
+        model.addAttribute("result",result.orElse(""));
         return "views/doctor/doctor-create";
     }
 
     @PostMapping(value="/doctor")
     public String doctorSubmit(
             @Valid @ModelAttribute("addDoctorModel") AddDoctorModel addDoctorModel,
-            BindingResult bindingResult, Model model){
+            BindingResult bindingResult, Model model,RedirectAttributes redirectAttributes){
 
         if (bindingResult.hasErrors()){
             model.addAttribute("result","error");
             return "views/doctor/doctor-create";
         }
         doctorService.save(addDoctorModel);
-        model.addAttribute("result","success");
-        return "views/doctor/doctor-create";
+        redirectAttributes.addFlashAttribute("result", "success");
+        return "redirect:/doctor";
     }
 
     @GetMapping(value="/doctor/search")

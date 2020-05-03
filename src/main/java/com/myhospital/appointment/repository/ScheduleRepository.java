@@ -9,7 +9,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import java.time.LocalDateTime;
 
 public interface ScheduleRepository extends PagingAndSortingRepository<Schedule,Integer> {
-    @Query("select o from Schedule o where o.startTime > :from AND :to < o.startTime  AND o.deleted = :deleted AND o.doctor.id = :doctorId")
+    @Query("select o from Schedule o where o.startTime between :from AND :to AND o.deleted = :deleted AND o.doctor.id = :doctorId")
     Page<Schedule> findDoctorSchedule(LocalDateTime from,LocalDateTime to, Boolean deleted, Integer doctorId, Pageable pageable);
     @Query("select count(*) from Schedule o where o.startTime > :from AND :to < o.startTime AND o.doctor.id = :doctorId")
     long getDoctorDailySchedule(LocalDateTime from,LocalDateTime to,Integer doctorId);

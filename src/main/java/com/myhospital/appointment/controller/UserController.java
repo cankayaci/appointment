@@ -35,22 +35,23 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "/user")
-    public String userRegisterForm(Model model) {
-        model.addAttribute("userAddModel", new BaseUserModel());
+    public String userRegisterForm(Model model, @ModelAttribute("result") Optional<String> result) {
+        model.addAttribute("userAddModel", new UserAddModel());
+        model.addAttribute("result",result.orElse(""));
         return "views/user/user-create";
     }
 
     @PostMapping(value = "/user")
-    public String userRegisterSubmit(@Valid @ModelAttribute("userAddModel") BaseUserModel baseUserModel,
-                                     BindingResult bindingResult, Model model) {
+    public String userRegisterSubmit(@Valid @ModelAttribute("userAddModel") UserAddModel userAddModel,
+                                     BindingResult bindingResult, Model model,RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("result", "error");
             return "views/user/user-create";
         }
-        userService.save(baseUserModel);
-        model.addAttribute("result", "success");
-        return "views/user/user-create";
+        userService.save(userAddModel);
+        redirectAttributes.addFlashAttribute("result", "success");
+        return "redirect:/user";
     }
 
     @GetMapping("/user/search")

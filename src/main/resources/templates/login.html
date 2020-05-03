@@ -41,35 +41,43 @@
                                         <span th:text="#{lang.welcome}"></span>
                                     </h1>
                                 </div>
-                                <div th:if="${param.error}" class="card mb-4 py-3 border-bottom-danger">
-                                    <div class="card-body">
+                                <div th:if="${param.error}" class="card mb-4 py-3 border-bottom-danger shadow h-100">
+                                    <div class="col mr-2">
                                         <span th:text="#{lang.wrong.username.password}"></span>
                                     </div>
                                 </div>
-                                <form class="user"  method="post">
-                                    <div class="form-group">
-                                        <input type="text" name="username" class="form-control" id="username" aria-describedby="emailHelp" th:placeholder="#{lang.system.user.username}">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" name="password" class="form-control" id="password" th:placeholder="#{lang.system.user.password}">
-                                    </div>
-                                    <div class="form-group">
+                                <form class="user" method="post">
+                                <div class="form-group">
+                                    <input type="text" name="username" class="form-control" id="username"
+                                           aria-describedby="emailHelp"
+                                           th:placeholder="#{lang.system.user.username}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password" class="form-control" id="password"
+                                           th:placeholder="#{lang.system.user.password}">
+                                </div>
+                                <!--    <div class="form-group">
                                         <select id="locales" class="form-control">
                                             <option>Dil/Language</option>
                                             <option value="en" th:text="#{lang.eng}"></option>
                                             <option value="tr" th:text="#{lang.tr}"></option>
                                         </select>
+                                    </div>-->
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox small">
+                                        <input type="checkbox" name="rememberMe" class="custom-control-input"
+                                               id="customCheck">
+                                        <label class="custom-control-label" for="customCheck">
+                                            <span th:text="#{lang.remember.me}"></span>
+                                        </label>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox small">
-                                            <input type="checkbox" name="rememberMe" class="custom-control-input" id="customCheck">
-                                            <label class="custom-control-label" for="customCheck">
-                                                <span th:text="#{lang.remember.me}"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <input type="submit" class="btn btn-primary btn-block" value="Log In"/>
-                                    <hr>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block" th:text="#{lang.login}">
+                                </button>
+
+
+
+                                <hr>
                                 </form>
 
 
@@ -104,6 +112,9 @@ $(document).ready(function() {
         }
     });
 });
+
+
+
 </script>
 
 </body>
