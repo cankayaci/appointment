@@ -98,7 +98,7 @@ public class AppointmentController {
                                           @RequestParam("name") Optional<String> name,
                                           @RequestParam("surname") Optional<String> surname,
                                           @RequestParam("identityNumber") Optional<String> identityNumber,
-                                          @RequestParam("scheduleId") Optional<Integer> scheduleId,
+                                           @PathVariable("scheduleId") Optional<Integer> scheduleId,
                                           Model model) {
 
         final int currentPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get();
@@ -109,7 +109,7 @@ public class AppointmentController {
         String patientSurname = surname.orElse("");
 
         Page<Patient> patientPage = patientService.findByCriteria(identity, patientName, patientSurname, PageRequest.of(currentPage, pageSize));
-        String url = String.format("/appointment/schedule/%s/patient?identityNumber=%s&name=%s&surname=%s",scheduleId,identity,patientName,patientSurname);
+        String url = String.format("/appointment/schedule/%s/patient?identityNumber=%s&name=%s&surname=%s",scheduleId.get(),identity,patientName,patientSurname);
 
         PageWrapper<Patient> patientPageWrapper = new PageWrapper<>(patientPage, url);
 
@@ -154,7 +154,7 @@ public class AppointmentController {
         String patientSurname = surname.orElse("");
 
         Page<Appointment> appointmentPage = appointmentService.findPatientAppointments(identity, patientName, patientSurname, PageRequest.of(currentPage, pageSize));
-        String url = String.format("/appointment/patients?identityNumber=%s&name=%s&surname=%s",scheduleId,identity,patientName,patientSurname);
+        String url = String.format("/appointment/patients?identityNumber=%s&name=%s&surname=%s",identity,patientName,patientSurname);
 
         PageWrapper<Appointment> appointmentPageWrapper = new PageWrapper<>(appointmentPage, url);
 
