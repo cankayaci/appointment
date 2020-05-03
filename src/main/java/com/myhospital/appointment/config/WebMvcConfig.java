@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.ISpringTemplateEngine;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
@@ -55,6 +57,7 @@ public class WebMvcConfig implements WebMvcConfigurer,  ApplicationContextAware 
         SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.addDialect(new LayoutDialect());
         engine.addDialect(new Java8TimeDialect());
+        engine.addDialect(new SpringSecurityDialect());
         engine.setTemplateResolver(templateResolver);
        // engine.setTemplateEngineMessageSource(messageSource());
         return engine;
@@ -86,7 +89,7 @@ public class WebMvcConfig implements WebMvcConfigurer,  ApplicationContextAware 
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(Locale.ENGLISH);
+        slr.setDefaultLocale(new Locale("en"));
         return slr;
     }
 

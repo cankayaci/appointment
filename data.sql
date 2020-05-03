@@ -6,5 +6,5 @@ INSERT INTO `department` VALUES (1,'d1'),(2,'d2'),(3,'d3'),(4,'d4'),(5,'d5'),(6,
 --
 -- Dumping data for table `role`
 --
-INSERT INTO `role` VALUES (1,'ADMIN'),(2,'USER');
+INSERT INTO `role` VALUES (1,'ROLE_ADMIN'),(2,'ROLE_USER');
 

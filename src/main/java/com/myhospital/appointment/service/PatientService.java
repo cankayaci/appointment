@@ -15,4 +15,5 @@ public interface PatientService {
     void save(BasePatientModel editPatientModel);
     Patient findPatientById(Integer id);
     Page<Patient> findByCriteria(String identityNumber,String name,String surname,Pageable pageable);
+    Long countTotalPatients();
 }

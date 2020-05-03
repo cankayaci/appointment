@@ -13,4 +13,5 @@ public interface DoctorService {
     Doctor findDoctorById(Integer id);
     Page<Doctor> findDoctorsByCode(Pageable pageable,String departmentCode);
     Page<Doctor> findByCriteria(String department,String name,String surname,Pageable pageable);
+    Long countTotalDoctors();
 }

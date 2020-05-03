@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title></title>
 
     <!-- Custom fonts for this template-->
     <link href="/css/all.min.css" rel="stylesheet" type="text/css">
@@ -37,46 +37,42 @@
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">
+                                        <span th:text="#{lang.welcome}"></span>
+                                    </h1>
                                 </div>
-                                <form class="user">
+                                <div th:if="${param.error}" class="card mb-4 py-3 border-bottom-danger">
+                                    <div class="card-body">
+                                        <span th:text="#{lang.wrong.username.password}"></span>
+                                    </div>
+                                </div>
+                                <form class="user"  method="post">
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                        <input type="text" name="username" class="form-control" id="username" aria-describedby="emailHelp" th:placeholder="#{lang.system.user.username}">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                        <input type="password" name="password" class="form-control" id="password" th:placeholder="#{lang.system.user.password}">
                                     </div>
                                     <div class="form-group">
-                                        <select id="locales" class="form-control form-control-user">
-                                            <option value=""></option>
+                                        <select id="locales" class="form-control">
+                                            <option>Dil/Language</option>
                                             <option value="en" th:text="#{lang.eng}"></option>
-                                            <option value="fr" th:text="#{lang.tr}"></option>
+                                            <option value="tr" th:text="#{lang.tr}"></option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck">
-                                            <label class="custom-control-label" for="customCheck">Remember Me</label>
+                                            <input type="checkbox" name="rememberMe" class="custom-control-input" id="customCheck">
+                                            <label class="custom-control-label" for="customCheck">
+                                                <span th:text="#{lang.remember.me}"></span>
+                                            </label>
                                         </div>
                                     </div>
-                                    <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                        Login
-                                    </a>
+                                    <input type="submit" class="btn btn-primary btn-block" value="Log In"/>
                                     <hr>
-                                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                                        <i class="fab fa-google fa-fw"></i> Login with Google
-                                    </a>
-                                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                        <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                    </a>
                                 </form>
-                                <hr>
-                                <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                </div>
-                                <div class="text-center">
-                                    <a class="small" href="register.html">Create an Account!</a>
-                                </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -102,6 +98,7 @@
 $(document).ready(function() {
     $("#locales").change(function () {
         var selectedOption = $('#locales').val();
+        console.log(selectedOption);
         if (selectedOption != ''){
             window.location.replace('international?lang=' + selectedOption);
         }

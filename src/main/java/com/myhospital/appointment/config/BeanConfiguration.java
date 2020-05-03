@@ -14,9 +14,4 @@ public class BeanConfiguration {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
-
-    @Bean
-    public BCryptPasswordEncoder getBCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }

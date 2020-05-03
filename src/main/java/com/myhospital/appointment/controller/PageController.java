@@ -9,6 +9,6 @@ public class PageController {
 
     @RequestMapping(value="/international", method =  RequestMethod.GET)
     public String getInternationalPage() {
-        return "international";
+        return "login";
     }
 }

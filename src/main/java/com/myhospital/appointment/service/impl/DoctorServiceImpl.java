@@ -76,4 +76,9 @@ public class DoctorServiceImpl implements DoctorService {
         Example<Doctor> employeeExample = Example.of(doctor, matcher);
         return doctorRepository.findAll(employeeExample,pageable);
     }
+
+    @Override
+    public Long countTotalDoctors() {
+        return doctorRepository.count();
+    }
 }

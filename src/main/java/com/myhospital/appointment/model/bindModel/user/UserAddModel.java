@@ -11,8 +11,6 @@ public class UserAddModel {
     @IsUniqueUserName
     private String username;
 
-
-
     public String getUsername() {
         return username;
     }

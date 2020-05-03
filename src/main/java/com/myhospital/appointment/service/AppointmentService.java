@@ -9,4 +9,5 @@ public interface AppointmentService {
     void save(int patientId,int scheduleId);
     Appointment getAppointmentWithId(int scheduleId, int patientId);
     Page<Appointment> findPatientAppointments(String identityNumber, String name, String surname, Pageable pageable);
+    Long countTotalAppointments();
 }

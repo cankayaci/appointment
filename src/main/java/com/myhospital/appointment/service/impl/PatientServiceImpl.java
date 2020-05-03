@@ -58,4 +58,9 @@ public class PatientServiceImpl implements PatientService {
          Example<Patient> employeeExample = Example.of(patient, matcher);
          return patientRepository.findAll(employeeExample,pageable);
     }
+
+    @Override
+    public Long countTotalPatients() {
+        return patientRepository.count();
+    }
 }

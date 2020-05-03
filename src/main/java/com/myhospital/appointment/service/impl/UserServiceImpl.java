@@ -4,6 +4,7 @@ import com.myhospital.appointment.entity.Patient;
 import com.myhospital.appointment.entity.Role;
 import com.myhospital.appointment.entity.User;
 import com.myhospital.appointment.model.bindModel.user.BaseUserModel;
+import com.myhospital.appointment.model.bindModel.user.ChangePasswordModel;
 import com.myhospital.appointment.model.bindModel.user.EditUserModel;
 import com.myhospital.appointment.model.bindModel.user.UserAddModel;
 import com.myhospital.appointment.model.viewModel.user.UserListModel;
@@ -16,6 +17,8 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -73,5 +76,26 @@ public class UserServiceImpl implements UserService {
         ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreNullValues().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
         Example<User> employeeExample = Example.of(user, matcher);
         return userRepository.findAll(employeeExample,pageable);
+    }
+
+    @Override
+    public Long countTotalUsers() {
+        return userRepository.count();
+    }
+
+    @Override
+    public Boolean updateUserPassword(ChangePasswordModel editUserModel) {
+
+        User user = this.userRepository.findByUsername(editUserModel.getUsername());
+        String encryptedPassword = this.bCryptPasswordEncoder.encode(editUserModel.getPassword());
+        if (!this.bCryptPasswordEncoder.matches(editUserModel.getOldPassword(),
+                user.getPassword())) {
+            return false;
+        }
+        user.setPassword(encryptedPassword);
+
+        this.userRepository.save(user);
+
+        return true;
     }
 }

@@ -68,8 +68,8 @@
 
                                         <tbody>
                                         <tr role="row" th:each="schedule : ${schedulePage.content}">
-                                            <td th:text="${schedule.startTime}"/>
-                                            <td th:text="${schedule.endTime}"/>
+                                            <td th:text="${#temporals.format(schedule.startTime, 'HH:mm:ss')}"/>
+                                            <td th:text="${#temporals.format(schedule.endTime, 'HH:mm:ss')}"/>
                                             <td>
                                                 <a th:href="@{'/appointment/schedule/'+${schedule.id}+'/patient'}"
                                                    class="btn btn-info btn-circle btn-sm">

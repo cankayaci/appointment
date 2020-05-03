@@ -90,7 +90,7 @@
                                              <td th:text="${appointment.patient.identityNumber}"/>
                                              <td th:text="${appointment.patient.name}"/>
                                              <td th:text="${appointment.patient.surname}"/>
-                                             <td th:text="${appointment.schedule.startTime}"/>
+                                             <td th:text="${#temporals.format(appointment.schedule.startTime, 'HH:mm:ss')}"/>
                                              <td th:text="${appointment.schedule.doctor.name}"/>
                                              <td th:text="${appointment.schedule.doctor.surname}"/>
                                            </tr>

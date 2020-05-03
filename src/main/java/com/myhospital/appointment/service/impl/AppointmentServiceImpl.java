@@ -57,4 +57,9 @@ public class AppointmentServiceImpl implements AppointmentService {
         Example<Appointment> employeeExample = Example.of(appointment, matcher);
         return appointmentRepository.findAll(employeeExample,pageable);
     }
+
+    @Override
+    public Long countTotalAppointments() {
+        return appointmentRepository.count();
+    }
 }
