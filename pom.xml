@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <org.thymeleaf-version>3.0.11.RELEASE</org.thymeleaf-version>
+        <org.thymeleaf-version>3.0.13.RELEASE</org.thymeleaf-version>
         <org.thymeleaf.extras-version>3.0.4.RELEASE</org.thymeleaf.extras-version>
         <thymeleaf-layout-dialect.version>2.4.1</thymeleaf-layout-dialect.version>
     </properties>
